@@ -1,0 +1,26 @@
+version: '3.7'
+services: 
+  wms-db:
+    image: mysql:5.7
+    environment: 
+      MYSQL_ROOT_PASSWORD: secretpassword
+      MYSQL_DATABASE: simplewms
+    ports: 
+      - "3306:3306"
+  wms-backend:
+    build: 
+      context: ./wms-backend
+    env_file: ./wms-backend/.env
+    environment: 
+      - DB_USERNAME=root
+      - DB_PASSWORD=secretpassword
+      - DB_HOST=wms-db
+      - DB_NAME=simplewms
+    ports: 
+      - "3000:3000"
+  wms-frontend:
+    build: 
+      context: ./wms-frontend
+      target: 'production-stage'
+    ports: 
+      - "8080:80"
