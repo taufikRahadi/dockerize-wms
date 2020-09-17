@@ -20,6 +20,7 @@
       - develop-stage (tambahin command yarn serve di docker-compose nya)
       - build-stage (cuma buat nge build)
       - production-stage (copy hasil build dari build-stage, trus masukin ke directory nginx)
+    - kalo mau ubah ke develop-stage, ubah aja value di build.target di dalem docker-compose, trus tambahin dibawahnya command: /bin/sh/ -c "yarn serve"
     - port nginx 80 tapi di docker-compose yg diekspos port 8080
 
 docker-compose otomatis nge buat docker network, yang mana isinya nanti adalah ke tiga service diatas, makanya yg saya akses di db host backend nya tu nama service nya.
